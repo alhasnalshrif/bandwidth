@@ -48,7 +48,7 @@ The app is organized around five focused areas:
 ## Requirements
 
 - macOS 14 or newer
-- Xcode with Swift 6 support
+- Xcode 16 or newer with Swift 6 support
 - Swift Package Manager
 - Tuist, preferably installed through Mise
 

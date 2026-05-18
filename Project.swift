@@ -96,6 +96,7 @@ let project = Project(
     ],
     additionalFiles: [
         "README.md",
+        "CLAUDE.md",
         "CONTRIBUTING.md",
         "ARCHITECTURE.md",
         "LICENSE",
