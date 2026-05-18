@@ -35,7 +35,9 @@ BandwidthGuard.xcodeproj/
 BandwidthGuard.xcworkspace/
 
 # Archives and app bundles
+dist/
 *.ipa
+*.zip
 *.dSYM
 
 # Logs

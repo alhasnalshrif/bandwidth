@@ -93,6 +93,12 @@ Build a local `.app` bundle into `dist/`:
 ./Scripts/build-app.sh
 ```
 
+Package a local release archive with a SHA-256 checksum:
+
+```bash
+./Scripts/package-release.sh v0.1.0
+```
+
 ## Format and Lint
 
 ```bash
@@ -127,6 +133,19 @@ Tuist owns the Xcode project graph through `Project.swift`, `Workspace.swift`, a
 - Expand unit coverage for formatting, persistence, reporting, and rules
 - Add exportable usage reports
 - Add release packaging, signing, notarization, and distribution automation
+
+## Release
+
+Releases are published from version tags that start with `v`.
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The release workflow builds the macOS app on GitHub Actions, packages `Bandwidth Guard.app` as a zip archive, writes a `.sha256` checksum, and attaches both files to the GitHub release.
+
+Current release builds are unsigned and not notarized. Users may need to allow the app manually in macOS Gatekeeper until signing and notarization are added.
 
 ## Contributing
 
