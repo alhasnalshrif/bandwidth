@@ -1,0 +1,7 @@
+--swiftversion 6.0
+--indent 4
+--semicolons never
+--commas always
+--trimwhitespace always
+--insertlines enabled
+--maxwidth 140

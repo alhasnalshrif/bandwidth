@@ -1,0 +1,46 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode user data and local settings
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Xcode build products and intermediates
+build/
+DerivedData/
+.xcodebuild/
+*.moved-aside
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Tuist generated state and projects
+.tuist/
+BandwidthGuard.xcodeproj/
+BandwidthGuard.xcworkspace/
+
+# Archives and app bundles
+*.ipa
+*.dSYM
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+.idea/
