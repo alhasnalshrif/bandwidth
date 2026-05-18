@@ -12,6 +12,7 @@ xcuserdata/
 
 # Xcode build products and intermediates
 build/
+Derived/
 DerivedData/
 .xcodebuild/
 *.moved-aside

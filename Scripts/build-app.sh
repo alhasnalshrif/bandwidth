@@ -15,7 +15,7 @@ if ! command -v tuist >/dev/null 2>&1; then
     exit 1
 fi
 
-tuist generate run --no-open
+tuist generate run --no-open >&2
 
 XCODE_COMMON_ARGS=(
     -workspace "$GENERATED_WORKSPACE_PATH"
@@ -26,7 +26,7 @@ XCODE_COMMON_ARGS=(
 tuist xcodebuild build \
     "${XCODE_COMMON_ARGS[@]}" \
     SYMROOT="$SYMROOT_DIR" \
-    CODE_SIGNING_ALLOWED=NO
+    CODE_SIGNING_ALLOWED=NO >&2
 
 BUILD_SETTINGS="$(xcodebuild "${XCODE_COMMON_ARGS[@]}" SYMROOT="$SYMROOT_DIR" -showBuildSettings)"
 TARGET_BUILD_DIR="$(echo "$BUILD_SETTINGS" | awk -F ' = ' '/ TARGET_BUILD_DIR = / { print $2; exit }')"

@@ -44,6 +44,12 @@ Build the app through Tuist:
 tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuard -configuration Debug CODE_SIGNING_ALLOWED=NO
 ```
 
+Build the Network Extension scaffold:
+
+```bash
+tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuardNetworkExtension -configuration Debug CODE_SIGNING_ALLOWED=NO
+```
+
 Package a local release artifact:
 
 ```bash

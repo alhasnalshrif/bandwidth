@@ -6,6 +6,7 @@ import SwiftUI
 @main
 struct BandwidthGuardApp: App {
     @StateObject private var store = AppStore(discovery: WorkspaceAppDiscovery())
+    @StateObject private var integration = SystemIntegrationStore()
 
     var body: some Scene {
         MenuBarExtra {
@@ -18,9 +19,10 @@ struct BandwidthGuardApp: App {
         .menuBarExtraStyle(.window)
 
         Settings {
-            SettingsView()
+            AppSettingsView()
                 .environmentObject(store)
-                .frame(width: 520, height: 420)
+                .environmentObject(integration)
+                .frame(width: 560, height: 680)
         }
     }
 }

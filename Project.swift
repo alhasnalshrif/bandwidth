@@ -50,6 +50,29 @@ let project = Project(
             sources: ["Modules/Core/Sources/**/*.swift"]
         ),
         .target(
+            name: "BandwidthGuardNetworkExtension",
+            destinations: .macOS,
+            product: .appExtension,
+            bundleId: "com.alshrif.bandwidth.network-extension",
+            deploymentTargets: .macOS("14.0"),
+            infoPlist: .extendingDefault(
+                with: [
+                    "NSExtension": [
+                        "NSExtensionPointIdentifier": "com.apple.networkextension.filter-data",
+                        "NSExtensionPrincipalClass": "$(PRODUCT_MODULE_NAME).FilterDataProvider",
+                    ],
+                ]
+            ),
+            sources: ["Extensions/BandwidthGuardNetworkExtension/Sources/**/*.swift"],
+            settings: .settings(
+                base: [
+                    "CODE_SIGN_STYLE": "Automatic",
+                    "DEVELOPMENT_TEAM": "LM9GJ6AQ87",
+                    "ENABLE_HARDENED_RUNTIME": "YES",
+                ]
+            )
+        ),
+        .target(
             name: "BandwidthGuardDiscovery",
             destinations: .macOS,
             product: .framework,

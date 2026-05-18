@@ -16,6 +16,9 @@ Modules/Discovery
 
 Modules/UI
   SwiftUI screens, feature views, and reusable presentation components.
+
+Extensions/BandwidthGuardNetworkExtension
+  Network Extension scaffold for future traffic filtering.
 ```
 
 ## Dependency Direction
@@ -44,6 +47,7 @@ Only extract new modules when the behavior exists and the boundary is clear.
 - `Monitoring`: traffic sample contracts and development traffic provider
 - `Reporting`: report filtering and export models if report logic grows
 - `BandwidthGuardNetworkExtension`: signed system extension for real traffic filtering
+- The extension target is scaffolded, but production activation still requires Apple Network Extension entitlements and user approval.
 
 ## State
 

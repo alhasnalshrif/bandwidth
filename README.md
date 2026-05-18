@@ -40,6 +40,7 @@ The app is organized around five focused areas:
 - Swift 6
 - SwiftUI
 - AppKit integration for menu bar behavior and running app discovery
+- Network Extension scaffold for future traffic filtering
 - Swift Package Manager
 - Tuist-generated Xcode workspace
 - Mise-pinned developer tooling
@@ -92,6 +93,12 @@ Build a local `.app` bundle into `dist/`:
 
 ```bash
 ./Scripts/build-app.sh
+```
+
+Build the Network Extension scaffold:
+
+```bash
+tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuardNetworkExtension -configuration Debug CODE_SIGNING_ALLOWED=NO
 ```
 
 Package a local release archive with a SHA-256 checksum:
@@ -152,6 +159,8 @@ The release workflow builds the macOS app on GitHub Actions, packages `Bandwidth
 
 Current release builds are unsigned and not notarized. Users may need to allow the app manually in macOS Gatekeeper until signing and notarization are added.
 
+The Network Extension target is scaffolded for development, but real installation and packet filtering require Apple Network Extension entitlements, signing, and user approval in System Settings.
+
 ## Contributing
 
 Contributions are welcome.
@@ -169,6 +178,12 @@ See `CONTRIBUTING.md` for the full local workflow and optional pre-commit hooks.
 ## Privacy
 
 Bandwidth Guard is designed around local-first behavior. Usage and profile data should remain on device unless an explicit export or sharing feature is added in the future.
+
+## macOS Integration
+
+The Settings window shows whether the app is running from `/Applications`, lets users enable or disable launch at login, and explains the current Network Extension permission state.
+
+Launch at login uses Apple's `SMAppService`. Real traffic filtering still requires the Network Extension target to be signed with the correct Apple entitlements and approved by the user in System Settings.
 
 ## License
 

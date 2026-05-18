@@ -46,3 +46,6 @@ jobs:
 
       - name: Build app
         run: tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuard -configuration Debug CODE_SIGNING_ALLOWED=NO
+
+      - name: Build network extension scaffold
+        run: tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuardNetworkExtension -configuration Debug CODE_SIGNING_ALLOWED=NO
