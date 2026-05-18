@@ -1,82 +1,96 @@
 # Bandwidth Guard
 
-Bandwidth Guard is a menu bar app for macOS that shows where your internet is going, app by app, in real time.
+> A privacy-first macOS menu bar app for understanding where your internet bandwidth goes, app by app.
 
-If your Mac feels slow, one glance tells you who is eating your data.
+[![Swift 6](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://www.swift.org)
+[![macOS 14+](https://img.shields.io/badge/macOS-14%2B-blue.svg)](https://developer.apple.com/macos/)
+[![Built with Tuist](https://img.shields.io/badge/Built%20with-Tuist-6E56CF.svg)](https://tuist.io)
+[![License](https://img.shields.io/badge/License-TBD-lightgrey.svg)](#license)
 
-## Why People Share It
+Bandwidth Guard brings an Activity Monitor-style view of network usage to your menu bar. It is designed to help you spot noisy apps, understand daily traffic patterns, and build toward profile-based bandwidth control without sending usage data off your Mac.
 
-- Instant clarity: see top network-hungry apps in seconds
-- Zero dashboard fatigue: everything lives in your menu bar
-- Daily history: track spikes and spot patterns over time
-- Profile-based controls: switch monitoring behavior fast
-- Built for focus: lightweight, fast, and privacy-first on-device
+## Highlights
 
-## One-Line Pitch
+- See network-heavy apps from a lightweight menu bar interface
+- Browse app-level usage, categories, reports, network profiles, and settings
+- Keep data local with a privacy-first architecture
+- Use a modular Swift 6 codebase split into Core, Discovery, and UI packages
+- Generate a reproducible Xcode workspace with Tuist and pinned tooling
+- Run package-level tests with Swift Package Manager
 
-"Finally, Activity Monitor for your bandwidth."
+## Project Status
 
-## Features
+Bandwidth Guard is in active early development.
 
-- Live traffic monitoring per app
-- Overview metrics for used and blocked traffic
-- Reports with daily summaries
-- Network profiles and app categories
-- macOS-native SwiftUI interface
+The current app includes the macOS shell, SwiftUI screens, app discovery, persistence models, profile/rule UI, and basic tests. Real per-app traffic monitoring and blocking are planned next and will require a signed macOS Network Extension plus Apple Developer provisioning.
 
-## Screens in the App
+## Screens
 
-- Overview
-- Apps
-- Reports
-- Networks
-- Settings
+The app is organized around five focused areas:
+
+- **Overview**: quick totals and current network activity
+- **Apps**: app-by-app usage and categorization
+- **Reports**: daily summaries and usage history
+- **Networks**: profile-based monitoring and control concepts
+- **Settings**: app preferences and local behavior
 
 ## Tech Stack
 
 - Swift 6
 - SwiftUI
-- AppKit integration for menu bar behavior
+- AppKit integration for menu bar behavior and running app discovery
 - Swift Package Manager
-- Tuist-generated Xcode project setup
+- Tuist-generated Xcode workspace
 - Mise-pinned developer tooling
-- SwiftFormat and SwiftLint configuration
+- SwiftFormat and SwiftLint
 
-## Run Locally
+## Requirements
+
+- macOS 14 or newer
+- Xcode with Swift 6 support
+- Swift Package Manager
+- Tuist, preferably installed through Mise
+
+## Quick Start
+
+Clone the repository, install pinned tools, generate the workspace, and open it in Xcode:
 
 ```bash
-swift run
-```
-
-## Generate the Xcode Project
-
-Tuist is now the source of truth for the Xcode project graph.
-
-```bash
+mise install
 tuist generate run
 open BandwidthGuard.xcworkspace
 ```
 
-If Mise is not installed yet, install it first from the official Mise instructions. Then install the pinned project tools:
-
-```bash
-mise install
-```
-
-Tuist is pinned in `mise.toml` so every machine uses the same project generator version.
-
-## Build and Test
-
-```bash
-tuist generate run --no-open
-tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuard -configuration Debug
-tuist xcodebuild test -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuard -configuration Debug
-```
-
-SwiftPM still works for package-level checks:
+You can also run package-level checks directly with SwiftPM:
 
 ```bash
 swift test
+```
+
+## Build
+
+Generate the workspace without opening Xcode:
+
+```bash
+tuist generate run --no-open
+```
+
+Build the app scheme:
+
+```bash
+tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuard -configuration Debug
+```
+
+Run the test suite:
+
+```bash
+tuist xcodebuild test -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuard -configuration Debug
+```
+
+Build a local `.app` bundle into `dist/`:
+
+```bash
+./Scripts/build-app.sh
 ```
 
 ## Format and Lint
@@ -86,33 +100,50 @@ swiftformat .
 swiftlint
 ```
 
-## Build a .app Bundle
+## Architecture
 
-```bash
-./Scripts/build-app.sh
+```text
+Apps/
+  BandwidthGuard/          macOS app entry point and resources
+
+Modules/
+  Core/                    models, persistence, state, and app logic
+  Discovery/               AppKit-backed running app discovery
+  UI/                      SwiftUI screens and shared components
+
+Tests/
+  BandwidthGuardCoreTests/ unit tests for core behavior
+
+Scripts/                   helper scripts for local builds
 ```
 
-The script requires Tuist, generates the workspace, and outputs the app bundle under `dist/`.
-
-## Project Structure
-
-- `Apps/BandwidthGuard` macOS app entry point and app resources
-- `Modules/Core` models, persistence, state, and core protocols
-- `Modules/Discovery` AppKit-backed running-app discovery
-- `Modules/UI` SwiftUI feature screens and reusable components
-- `Project.swift` Tuist project definition
-- `Workspace.swift` Tuist workspace definition
-- `Tuist.swift` Tuist generation options
-- `mise.toml` pinned Tuist version
-- `Tests` unit tests
-- `Scripts` helper build scripts
+Tuist owns the Xcode project graph through `Project.swift`, `Workspace.swift`, and `Tuist.swift`. SwiftPM remains available for package-level development and tests through `Package.swift`.
 
 ## Roadmap
 
-- Signed Network Extension integration for real traffic blocking
-- Advanced filtering rules and alerts
-- Exportable usage reports
+- Add a dedicated monitoring module and development traffic provider
+- Connect traffic snapshots to app state and daily history
+- Integrate a signed Network Extension for real traffic monitoring and blocking
+- Expand unit coverage for formatting, persistence, reporting, and rules
+- Add exportable usage reports
+- Add release packaging, signing, notarization, and distribution automation
+
+## Contributing
+
+Contributions are welcome once the repository license is finalized.
+
+Good first areas include tests, UI polish, reporting improvements, documentation, and development-only traffic simulation. Before opening a pull request, please format the project and run the relevant checks:
+
+```bash
+swiftformat .
+swiftlint
+swift test
+```
+
+## Privacy
+
+Bandwidth Guard is designed around local-first behavior. Usage and profile data should remain on device unless an explicit export or sharing feature is added in the future.
 
 ## License
 
-Private/internal project (add a license if you plan to open source).
+No open-source license is currently included. Add a `LICENSE` file before publishing or accepting external contributions.
