@@ -128,6 +128,8 @@ Scripts/                   helper scripts for local builds
 
 Tuist owns the Xcode project graph through `Project.swift`, `Workspace.swift`, and `Tuist.swift`. SwiftPM remains available for package-level development and tests through `Package.swift`.
 
+See `ARCHITECTURE.md` for module boundaries, dependency rules, and testing strategy.
+
 ## Roadmap
 
 - Add a dedicated monitoring module and development traffic provider

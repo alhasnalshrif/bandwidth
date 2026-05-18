@@ -97,6 +97,7 @@ let project = Project(
     additionalFiles: [
         "README.md",
         "CONTRIBUTING.md",
+        "ARCHITECTURE.md",
         "LICENSE",
         "PROJECT_PLAN.md",
         "Package.swift",
