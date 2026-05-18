@@ -20,6 +20,7 @@ let project = Project(
             infoPlist: .extendingDefault(
                 with: [
                     "CFBundleDisplayName": "Bandwidth Guard",
+                    "LSApplicationCategoryType": "public.app-category.utilities",
                     "LSUIElement": true,
                 ]
             ),
@@ -29,6 +30,7 @@ let project = Project(
                 .target(name: "BandwidthGuardCore"),
                 .target(name: "BandwidthGuardDiscovery"),
                 .target(name: "BandwidthGuardUI"),
+                .target(name: "BandwidthGuardNetworkExtension"),
             ],
             settings: .settings(
                 base: [

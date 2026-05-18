@@ -1,4 +1,5 @@
 --swiftversion 6.0
+--exclude .build,.xcodebuild,Derived,DerivedData,BandwidthGuard.xcodeproj,BandwidthGuard.xcworkspace
 --indent 4
 --semicolons never
 --commas always

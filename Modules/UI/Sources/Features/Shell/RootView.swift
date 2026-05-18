@@ -93,6 +93,14 @@ struct HeaderView: View {
                 .help(store.monitoringEnabled ? "Pause monitoring" : "Resume monitoring")
 
                 Button {
+                    NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                } label: {
+                    Label("Setup", systemImage: "gearshape")
+                }
+                .controlSize(.small)
+                .help("Open setup and permissions")
+
+                Button {
                     NSApplication.shared.terminate(nil)
                 } label: {
                     Label("Quit", systemImage: "power")

@@ -47,6 +47,13 @@ struct AppSettingsView: View {
                             detail: integration.launchAtLoginDetail,
                             icon: "arrow.clockwise.circle"
                         )
+
+                        Button {
+                            openSystemSettings("x-apple.systempreferences:com.apple.LoginItems-Settings.extension")
+                        } label: {
+                            Label("Open Login Items Settings", systemImage: "gear")
+                        }
+                        .controlSize(.small)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 6)
@@ -56,6 +63,13 @@ struct AppSettingsView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         IntegrationRow(title: "App discovery", detail: "Available", icon: "app.badge.checkmark")
                         IntegrationRow(title: "Network Extension", detail: integration.networkExtensionDetail, icon: "network")
+
+                        Button {
+                            integration.requestNetworkExtensionApproval()
+                        } label: {
+                            Label("Request Network Extension Approval", systemImage: "checkmark.shield")
+                        }
+                        .controlSize(.small)
 
                         Text(
                             "macOS will only allow packet filtering after the Network Extension is signed "
@@ -84,6 +98,14 @@ struct AppSettingsView: View {
         .onReceive(integration.$launchAtLoginEnabled) { isEnabled in
             launchAtLogin = isEnabled
         }
+    }
+
+    private func openSystemSettings(_ urlString: String) {
+        guard let url = URL(string: urlString) else {
+            return
+        }
+
+        NSWorkspace.shared.open(url)
     }
 }
 

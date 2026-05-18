@@ -3,8 +3,15 @@ import BandwidthGuardDiscovery
 import BandwidthGuardUI
 import SwiftUI
 
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_: Notification) {
+        NSApplication.shared.setActivationPolicy(.accessory)
+    }
+}
+
 @main
 struct BandwidthGuardApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var store = AppStore(discovery: WorkspaceAppDiscovery())
     @StateObject private var integration = SystemIntegrationStore()
 
@@ -14,7 +21,11 @@ struct BandwidthGuardApp: App {
                 .environmentObject(store)
                 .frame(width: 460, height: 640)
         } label: {
-            Label("Bandwidth Guard", systemImage: store.monitoringEnabled ? "speedometer" : "speedometer")
+            Label {
+                Text("Bandwidth Guard")
+            } icon: {
+                Image("MenuBarLogo")
+            }
         }
         .menuBarExtraStyle(.window)
 

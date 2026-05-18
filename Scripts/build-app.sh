@@ -26,6 +26,7 @@ XCODE_COMMON_ARGS=(
 tuist xcodebuild build \
     "${XCODE_COMMON_ARGS[@]}" \
     SYMROOT="$SYMROOT_DIR" \
+    DEBUG_INFORMATION_FORMAT=dwarf \
     CODE_SIGNING_ALLOWED=NO >&2
 
 BUILD_SETTINGS="$(xcodebuild "${XCODE_COMMON_ARGS[@]}" SYMROOT="$SYMROOT_DIR" -showBuildSettings)"
