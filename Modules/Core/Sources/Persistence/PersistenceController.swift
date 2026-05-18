@@ -12,15 +12,15 @@ enum PersistenceError: LocalizedError {
         switch self {
         case .applicationSupportUnavailable:
             "Application Support is unavailable."
-        case .createDirectoryFailed(let error):
+        case let .createDirectoryFailed(error):
             "Could not create app storage: \(error.localizedDescription)"
-        case .loadFailed(let error):
+        case let .loadFailed(error):
             "Could not read saved state: \(error.localizedDescription)"
-        case .decodeFailed(let error):
+        case let .decodeFailed(error):
             "Saved state is invalid and was ignored: \(error.localizedDescription)"
-        case .encodeFailed(let error):
+        case let .encodeFailed(error):
             "Could not prepare saved state: \(error.localizedDescription)"
-        case .saveFailed(let error):
+        case let .saveFailed(error):
             "Could not save app state: \(error.localizedDescription)"
         }
     }
@@ -67,7 +67,7 @@ final class PersistenceController {
                 return .success(nil)
             }
             let data = try Data(contentsOf: fileURL)
-            return .success(try decoder.decode(PersistedState.self, from: data))
+            return try .success(decoder.decode(PersistedState.self, from: data))
         } catch let decodingError as DecodingError {
             moveAsideInvalidState(at: fileURL)
             return .failure(.decodeFailed(decodingError))

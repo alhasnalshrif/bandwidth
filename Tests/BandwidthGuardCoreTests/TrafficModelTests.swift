@@ -1,5 +1,5 @@
-import XCTest
 @testable import BandwidthGuardCore
+import XCTest
 
 final class TrafficModelTests: XCTestCase {
     func testManagedAppTotalsUseMatchingReportRange() {
@@ -13,7 +13,7 @@ final class TrafficModelTests: XCTestCase {
             uploadedToday: 25,
             downloadedThisWeek: 700,
             uploadedThisWeek: 125,
-            downloadedThisMonth: 3_000,
+            downloadedThisMonth: 3000,
             uploadedThisMonth: 500,
             blockedBytes: 50,
             lastSeen: Date(timeIntervalSince1970: 0)
@@ -21,10 +21,10 @@ final class TrafficModelTests: XCTestCase {
 
         XCTAssertEqual(app.totalToday, 125)
         XCTAssertEqual(app.totalThisWeek, 825)
-        XCTAssertEqual(app.totalThisMonth, 3_500)
+        XCTAssertEqual(app.totalThisMonth, 3500)
         XCTAssertEqual(app.total(for: .today), 125)
         XCTAssertEqual(app.total(for: .week), 825)
-        XCTAssertEqual(app.total(for: .month), 3_500)
+        XCTAssertEqual(app.total(for: .month), 3500)
     }
 
     func testSummaryAndDailyTotalsExcludeBlockedTrafficFromUsageTotal() {
@@ -36,16 +36,16 @@ final class TrafficModelTests: XCTestCase {
             uploaded: 75,
             blocked: 200
         )
-        let dailyTotal = DailyTrafficTotal(dateKey: "2026-05-18", downloaded: 1_000, uploaded: 250, blocked: 500)
+        let dailyTotal = DailyTrafficTotal(dateKey: "2026-05-18", downloaded: 1000, uploaded: 250, blocked: 500)
 
         XCTAssertEqual(summary.id, "com.example.editor")
         XCTAssertEqual(summary.total, 475)
         XCTAssertEqual(dailyTotal.id, "2026-05-18")
-        XCTAssertEqual(dailyTotal.total, 1_250)
+        XCTAssertEqual(dailyTotal.total, 1250)
     }
 
     func testFormattedBytesUsesReadableUnits() {
-        let value = Int64(1_024).formattedBytes
+        let value = Int64(1024).formattedBytes
 
         XCTAssertTrue(value.contains("KB") || value.contains("kB"), "Expected a kilobyte unit, got: \(value)")
     }

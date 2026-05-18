@@ -33,16 +33,24 @@ public struct WorkspaceAppDiscovery: AppDiscovery {
     private func categorize(bundleIdentifier: String, name: String) -> AppCategory {
         let key = "\(bundleIdentifier) \(name)".lowercased()
 
-        if key.contains("safari") || key.contains("chrome") || key.contains("firefox") || key.contains("browser") || key.contains("arc") {
+        let isBrowser = key.contains("safari") || key.contains("chrome") || key.contains("firefox") || key.contains("browser") || key
+            .contains("arc")
+        let isMessaging = key.contains("telegram") || key.contains("slack") || key.contains("discord") || key.contains("whatsapp") || key
+            .contains("messages")
+        let isMedia = key.contains("music") || key.contains("vlc") || key.contains("youtube") || key.contains("tv")
+        let isDeveloper = key.contains("xcode") || key.contains("terminal") || key.contains("iterm") || key.contains("code") || key
+            .contains("github")
+
+        if isBrowser {
             return .browser
         }
-        if key.contains("telegram") || key.contains("slack") || key.contains("discord") || key.contains("whatsapp") || key.contains("messages") {
+        if isMessaging {
             return .messaging
         }
-        if key.contains("music") || key.contains("vlc") || key.contains("youtube") || key.contains("tv") {
+        if isMedia {
             return .media
         }
-        if key.contains("xcode") || key.contains("terminal") || key.contains("iterm") || key.contains("code") || key.contains("github") {
+        if isDeveloper {
             return .developer
         }
         if bundleIdentifier.hasPrefix("com.apple.") {

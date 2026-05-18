@@ -20,9 +20,11 @@ struct ReportsView: View {
                     .font(.system(size: 28, weight: .semibold, design: .rounded))
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
-                Text("\(store.blockedForSelectedRange.formattedBytes) blocked in saved \(store.selectedRange.rawValue.lowercased()) history")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                Text(
+                    "\(store.blockedForSelectedRange.formattedBytes) blocked in saved \(store.selectedRange.rawValue.lowercased()) history"
+                )
+                .font(.caption)
+                .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 14)

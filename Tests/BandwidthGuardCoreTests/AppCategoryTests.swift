@@ -1,5 +1,5 @@
-import XCTest
 @testable import BandwidthGuardCore
+import XCTest
 
 final class AppCategoryTests: XCTestCase {
     func testRawValuesStayStable() {

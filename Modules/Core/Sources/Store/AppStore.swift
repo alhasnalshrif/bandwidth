@@ -203,7 +203,7 @@ public final class AppStore: ObservableObject {
 
     private func restore() {
         switch persistence.load() {
-        case .success(.some(let state)):
+        case let .success(.some(state)):
             apps = state.apps
             profiles = sanitizedProfiles(state.profiles)
             selectedProfileID = state.selectedProfileID
@@ -219,7 +219,7 @@ public final class AppStore: ObservableObject {
         case .success(nil):
             ingestRunningApps()
             persist()
-        case .failure(let error):
+        case let .failure(error):
             appErrorMessage = error.localizedDescription
             profiles = sanitizedProfiles([])
             selectedProfileID = selectedProfile.id

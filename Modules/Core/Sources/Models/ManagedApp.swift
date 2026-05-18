@@ -1,7 +1,10 @@
 import Foundation
 
 public struct ManagedApp: Identifiable, Codable, Equatable, Sendable {
-    public var id: String { bundleIdentifier }
+    public var id: String {
+        bundleIdentifier
+    }
+
     public var bundleIdentifier: String
     public var name: String
     public var executablePath: String?
@@ -16,9 +19,17 @@ public struct ManagedApp: Identifiable, Codable, Equatable, Sendable {
     public var blockedBytes: Int64
     public var lastSeen: Date
 
-    public var totalToday: Int64 { downloadedToday + uploadedToday }
-    public var totalThisWeek: Int64 { downloadedThisWeek + uploadedThisWeek }
-    public var totalThisMonth: Int64 { downloadedThisMonth + uploadedThisMonth }
+    public var totalToday: Int64 {
+        downloadedToday + uploadedToday
+    }
+
+    public var totalThisWeek: Int64 {
+        downloadedThisWeek + uploadedThisWeek
+    }
+
+    public var totalThisMonth: Int64 {
+        downloadedThisMonth + uploadedThisMonth
+    }
 
     public init(
         bundleIdentifier: String,

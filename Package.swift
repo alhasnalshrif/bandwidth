@@ -5,13 +5,13 @@ import PackageDescription
 let package = Package(
     name: "BandwidthGuard",
     platforms: [
-        .macOS(.v14)
+        .macOS(.v14),
     ],
     products: [
         .executable(name: "BandwidthGuard", targets: ["BandwidthGuard"]),
         .library(name: "BandwidthGuardCore", targets: ["BandwidthGuardCore"]),
         .library(name: "BandwidthGuardDiscovery", targets: ["BandwidthGuardDiscovery"]),
-        .library(name: "BandwidthGuardUI", targets: ["BandwidthGuardUI"])
+        .library(name: "BandwidthGuardUI", targets: ["BandwidthGuardUI"]),
     ],
     targets: [
         .executableTarget(
@@ -19,7 +19,7 @@ let package = Package(
             dependencies: [
                 "BandwidthGuardCore",
                 "BandwidthGuardDiscovery",
-                "BandwidthGuardUI"
+                "BandwidthGuardUI",
             ],
             path: "Apps/BandwidthGuard",
             sources: ["Sources"],
@@ -43,6 +43,6 @@ let package = Package(
             name: "BandwidthGuardCoreTests",
             dependencies: ["BandwidthGuardCore"],
             path: "Tests/BandwidthGuardCoreTests"
-        )
+        ),
     ]
 )

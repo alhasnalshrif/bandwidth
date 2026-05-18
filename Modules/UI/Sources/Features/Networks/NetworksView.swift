@@ -66,7 +66,10 @@ struct NetworksView: View {
                 }
 
                 HStack {
-                    Label(store.selectedProfile.isMetered ? "Metered profile" : "Unmetered profile", systemImage: store.selectedProfile.isMetered ? "cellularbars" : "wifi")
+                    Label(
+                        store.selectedProfile.isMetered ? "Metered profile" : "Unmetered profile",
+                        systemImage: store.selectedProfile.isMetered ? "cellularbars" : "wifi"
+                    )
                     Spacer()
                     Text("\(store.selectedProfile.appRules.count) custom rules")
                 }
@@ -179,7 +182,8 @@ struct NetworkProfileRow: View {
         }
         .padding(10)
         .frame(maxWidth: .infinity)
-        .background(RoundedRectangle(cornerRadius: 8).fill(Color(nsColor: selected ? .selectedContentBackgroundColor : .controlBackgroundColor).opacity(selected ? 0.22 : 1)))
+        .background(RoundedRectangle(cornerRadius: 8)
+            .fill(Color(nsColor: selected ? .selectedContentBackgroundColor : .controlBackgroundColor).opacity(selected ? 0.22 : 1)))
     }
 }
 

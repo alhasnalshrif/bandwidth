@@ -23,7 +23,11 @@ public struct SettingsView: View {
 
             Divider()
 
-            SettingsLine(title: "Monitor", detail: store.monitoringEnabled ? "Running" : "Paused", icon: store.monitoringEnabled ? "play.circle.fill" : "pause.circle.fill")
+            SettingsLine(
+                title: "Monitor",
+                detail: store.monitoringEnabled ? "Running" : "Paused",
+                icon: store.monitoringEnabled ? "play.circle.fill" : "pause.circle.fill"
+            )
             SettingsLine(title: "Active profile", detail: store.selectedProfile.name, icon: "wifi.router")
             SettingsLine(title: "Tracked apps", detail: "\(store.apps.count)", icon: "app.badge")
             SettingsLine(title: "Saved history", detail: "\(store.savedDayCount) days", icon: "calendar")
@@ -45,10 +49,14 @@ public struct SettingsView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Traffic control mode")
                     .font(.system(size: 13, weight: .semibold))
-                Text("Rules, profiles, and history are saved in the app. Live traffic blocking still needs a signed Network Extension target and Apple entitlements before macOS will allow real packet filtering.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
+                Text(
+                    "Rules, profiles, and history are saved in the app. "
+                        + "Live traffic blocking still needs a signed Network Extension target and Apple entitlements "
+                        + "before macOS will allow real packet filtering."
+                )
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
             }
             .padding(12)
             .background(RoundedRectangle(cornerRadius: 8).fill(Color(nsColor: .controlBackgroundColor)))

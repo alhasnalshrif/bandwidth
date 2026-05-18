@@ -8,7 +8,9 @@ enum MainSection: String, CaseIterable, Identifiable {
     case reports = "Reports"
     case networks = "Networks"
 
-    var id: String { rawValue }
+    var id: String {
+        rawValue
+    }
 
     var icon: String {
         switch self {
@@ -100,7 +102,11 @@ struct HeaderView: View {
             }
 
             HStack(spacing: 10) {
-                MetricPill(title: "Used today", value: (store.totalDownloadedToday + store.totalUploadedToday).formattedBytes, icon: "arrow.up.arrow.down")
+                MetricPill(
+                    title: "Used today",
+                    value: (store.totalDownloadedToday + store.totalUploadedToday).formattedBytes,
+                    icon: "arrow.up.arrow.down"
+                )
                 MetricPill(title: "Blocked", value: store.totalBlocked.formattedBytes, icon: "hand.raised.fill")
             }
         }

@@ -41,7 +41,7 @@ public struct NetworkProfile: Identifiable, Codable, Equatable, Sendable {
             isMetered: true,
             defaultAllowed: false,
             appRules: [:]
-        )
+        ),
     ]
 
     public static var fallback: NetworkProfile {
