@@ -27,7 +27,6 @@ DerivedData/
 # Swift Package Manager
 .build/
 .swiftpm/
-Package.resolved
 
 # Tuist generated state and projects
 .tuist/

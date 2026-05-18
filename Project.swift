@@ -93,5 +93,21 @@ let project = Project(
             buildAction: .buildAction(targets: ["BandwidthGuard"]),
             testAction: .targets(["BandwidthGuardCoreTests"], configuration: "Debug")
         ),
+    ],
+    additionalFiles: [
+        "README.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "PROJECT_PLAN.md",
+        "Package.swift",
+        "Workspace.swift",
+        "Tuist.swift",
+        "mise.toml",
+        ".swiftformat",
+        ".swiftlint.yml",
+        ".gitignore",
+        ".githooks/**",
+        "Scripts/**",
+        ".github/**",
     ]
 )

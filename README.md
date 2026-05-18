@@ -5,7 +5,8 @@
 [![Swift 6](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://www.swift.org)
 [![macOS 14+](https://img.shields.io/badge/macOS-14%2B-blue.svg)](https://developer.apple.com/macos/)
 [![Built with Tuist](https://img.shields.io/badge/Built%20with-Tuist-6E56CF.svg)](https://tuist.io)
-[![License](https://img.shields.io/badge/License-TBD-lightgrey.svg)](#license)
+[![CI](https://github.com/alhasnalshrif/bandwidth/actions/workflows/ci.yml/badge.svg)](https://github.com/alhasnalshrif/bandwidth/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Bandwidth Guard brings an Activity Monitor-style view of network usage to your menu bar. It is designed to help you spot noisy apps, understand daily traffic patterns, and build toward profile-based bandwidth control without sending usage data off your Mac.
 
@@ -106,6 +107,8 @@ swiftformat .
 swiftlint
 ```
 
+CI runs formatting, linting, SwiftPM tests, Tuist workspace generation, and an unsigned Debug app build on pull requests and pushes to `main`.
+
 ## Architecture
 
 ```text
@@ -149,7 +152,7 @@ Current release builds are unsigned and not notarized. Users may need to allow t
 
 ## Contributing
 
-Contributions are welcome once the repository license is finalized.
+Contributions are welcome.
 
 Good first areas include tests, UI polish, reporting improvements, documentation, and development-only traffic simulation. Before opening a pull request, please format the project and run the relevant checks:
 
@@ -159,10 +162,12 @@ swiftlint
 swift test
 ```
 
+See `CONTRIBUTING.md` for the full local workflow and optional pre-commit hooks.
+
 ## Privacy
 
 Bandwidth Guard is designed around local-first behavior. Usage and profile data should remain on device unless an explicit export or sharing feature is added in the future.
 
 ## License
 
-No open-source license is currently included. Add a `LICENSE` file before publishing or accepting external contributions.
+Bandwidth Guard is released under the MIT License. See `LICENSE` for details.

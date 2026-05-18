@@ -1,0 +1,18 @@
+#!/bin/zsh
+set -euo pipefail
+
+if command -v swiftformat >/dev/null 2>&1; then
+    swiftformat --lint .
+else
+    echo "swiftformat is not installed" >&2
+    exit 1
+fi
+
+if command -v swiftlint >/dev/null 2>&1; then
+    swiftlint --strict
+else
+    echo "swiftlint is not installed" >&2
+    exit 1
+fi
+
+swift test

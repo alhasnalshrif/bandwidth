@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Mise tools
+        uses: jdx/mise-action@v2
+
+      - name: Install SwiftFormat
+        run: brew install swiftformat
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Check formatting
+        run: swiftformat --lint .
+
+      - name: Run SwiftLint
+        run: swiftlint --strict
+
+      - name: Run SwiftPM tests
+        run: swift test
+
+      - name: Generate workspace
+        run: tuist generate run --no-open
+
+      - name: Build app
+        run: tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuard -configuration Debug CODE_SIGNING_ALLOWED=NO
