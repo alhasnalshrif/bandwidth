@@ -101,7 +101,7 @@ Build the Network Extension scaffold:
 tuist xcodebuild build -workspace BandwidthGuard.xcworkspace -scheme BandwidthGuardNetworkExtension -configuration Debug CODE_SIGNING_ALLOWED=NO
 ```
 
-Package a local release archive with a SHA-256 checksum:
+Package a local DMG release artifact with a SHA-256 checksum:
 
 ```bash
 ./Scripts/package-release.sh v0.1.0
@@ -155,7 +155,7 @@ git tag v0.1.0
 git push origin v0.1.0
 ```
 
-The release workflow builds the macOS app on GitHub Actions, packages `Bandwidth Guard.app` as a zip archive, writes a `.sha256` checksum, and attaches both files to the GitHub release.
+The release workflow builds the macOS app on GitHub Actions, packages `Bandwidth Guard.app` as a DMG, writes a `.sha256.txt` checksum, and attaches both files to the GitHub release.
 
 Current release builds are unsigned and not notarized. Users may need to allow the app manually in macOS Gatekeeper until signing and notarization are added.
 

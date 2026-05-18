@@ -38,5 +38,5 @@ jobs:
           gh release create "${GITHUB_REF_NAME}" \
             --title "Bandwidth Guard ${GITHUB_REF_NAME}" \
             --notes "Release ${GITHUB_REF_NAME} of Bandwidth Guard." \
-            dist/*.zip \
-            dist/*.sha256
+            dist/*.dmg \
+            dist/*.sha256.txt
